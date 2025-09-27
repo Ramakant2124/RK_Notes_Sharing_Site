@@ -1,0 +1,94 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+ <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: url("{% static 'images/bg.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        .contact-container {
+            background-color: rgba(38, 37, 37, 0.46); /* semi-transparent black */
+            color: white;
+            padding: 50px 30px;
+            margin: 50px auto;
+            width: 90%;
+            max-width: 1300px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 1);
+        }
+
+        .contact-header {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #ffe100ff;
+        }
+
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .contact-info p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: #00ffcc;
+        }
+
+        a {
+            color: #00ccff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .contact-info {
+                margin-top: 30px;
+            }
+        }
+    </style>
+<div class="contact-container">
+        <div class="contact-header"><b>Contact Us</b></div>
+        <div class="row">
+            <!-- Left: Google Map -->
+            <div class="col-md-6">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3755.112840149785!2d75.32891307504194!3d21.143013083595434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd9418eccefe0f3%3A0xf7d64c3269ab0bc6!2sRamakant%20Plywood%2C%20Kasoda%2C%20Maharashtra%20425110!5e0!3m2!1sen!2sin!4v1690000000000!5m2!1sen!2sin" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <!-- Right: Contact Info -->
+            <div class="col-md-6 contact-info">
+                <p><i class="fas fa-envelope"></i><strong>Email ID:</strong> chaudhariramakant754@gmail.com</p>
+                <p><i class="fas fa-phone"></i><strong>Contact:</strong> 9834777647</p>
+                <p><i class="fas fa-map-marker-alt"></i><strong>Address:</strong> Erandol Road, Kasoda, Jalgaon, Maharashtra 425110, India</p>
+                <p><i class="fas fa-clock"></i><strong>Office Hours:</strong> 10:00 AM – 7:00 PM</p>
+                <p><i class="fab fa-facebook"></i><strong>Facebook:</strong> 
+                    <a href="https://www.facebook.com/share/14Ecm4MUBgg/" target="_blank">Ramakant Chaudhari</a>
+                </p>
+                <p><i class="fab fa-instagram"></i><strong>Instagram:</strong> 
+                    <a href="https://www.instagram.com/mr_ramakant_3715?igsh=MWtzdmp5c2R1dHpzYw==" target="_blank">@mr_ramakant_3715</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Notes Sharing Site</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- CSS Libraries -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/mystyle.css' %}?v=2">
+
+  <!-- JS Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+{# ================== Header ================== #}
+{% if request.user.is_authenticated and request.user.is_superuser %}
+  <!-- Admin Navigation -->
+<nav class="navbar navbar-expand-sm" style="background: linear-gradient(to right, #ffffff, #0077ff);">
+  <!-- Logo -->
+  <a class="navbar-brand" href="{% url 'index' %}">
+    <img src="{% static 'images/logo.png' %}" alt="Logo" style="height: 50px;">
+  </a>
+
+  <!-- Toggler for mobile -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar Links -->
+  <div class="collapse navbar-collapse" id="navbarContent">
+    <ul class="navbar-nav ml-auto">
+
+      <!-- Home -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'admin_home' %}"><b>HOME</b></a>
+      </li>
+
+      <!-- Dropdown: View Notes -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="viewNotesDropdown" data-toggle="dropdown" role="button"
+          aria-haspopup="true" aria-expanded="false">
+          <b>VIEW NOTES</b>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="viewNotesDropdown">
+          <a class="dropdown-item" href="{% url 'pending_notes' %}">Pending</a>
+          <a class="dropdown-item" href="{% url 'accepted_notes' %}">Accepted</a>
+          <a class="dropdown-item" href="{% url 'rejected_notes' %}">Rejected</a>
+          <a class="dropdown-item" href="{% url 'all_notes' %}">All Notes</a>
+        </div>
+      </li>
+
+      <!-- View Users -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'view_users' %}"><b>VIEW USERS</b></a>
+      </li>
+
+
+
+      <!-- Logout -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}"><b>LOGOUT</b></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+{% else %}
+  <!-- Public Navigation -->
+  <nav class="navbar navbar-expand-sm" style="background: linear-gradient(to right, #ffffffff, #0077ffff);">
+    <!-- Logo -->
+    <a class="navbar-brand" href="{% url 'index' %}">
+      <img src="{% static 'images/logo.png' %}" alt="Logo" style="height: 50px;">
+    </a>
+
+    <!-- Navbar items -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'index' %}"><b>HOME</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'about' %}"><b>ABOUT</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'contact' %}"><b>CONTACT</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}"><b>LOGIN</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login_admin' %}"><b>ADMIN</b></a>
+      </li>
+    </ul>
+  </nav>
+{% endif %}
+
+{# ================== Page Body ================== #}
+<div class="container mt-4">
+  {% block body %}
+  {% endblock %}
+</div>
+
+{# ================== Footer ================== #}
+<footer class="text-center text-lg-start bg-light text-muted mt-5">
+  <div class="text-center p-3" style="background: linear-gradient(to right, #ffffffff, #0077ffff);">
+    <p style="color: black;">
+      © {{ now|date:"Y" }} RK Notes Sharing Site Site developed by 
+      <b>{% if request.user.is_authenticated and request.user.is_superuser %}Ramakant Chaudhari{% else %}Ramakant Chaudhari{% endif %}</b>. 
+      All rights reserved.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

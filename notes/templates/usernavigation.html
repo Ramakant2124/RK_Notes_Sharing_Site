@@ -1,0 +1,88 @@
+<html lang="en">
+<head>
+  {% load static %}
+  <title>Notes Sharing Site</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/mystyle.css' %}?v=2">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm" style="background: linear-gradient(to right,  #ffffff, #0077ff);">
+  <!-- Logo -->
+  <a class="navbar-brand" href="{% url 'profile' %}">
+    <img src="{% static 'images/logo.png' %}" alt="Logo" style="height: 50px;">
+  </a>
+
+  <!-- Toggler for mobile -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#userNavbarContent"
+    aria-controls="userNavbarContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar Links -->
+  <div class="collapse navbar-collapse" id="userNavbarContent">
+    <ul class="navbar-nav ml-auto">
+
+      <!-- Home -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'profile' %}"><b>HOME</b></a>
+      </li>
+
+      <!-- Upload Notes -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'upload_notes' %}"><b>UPLOAD NOTES</b></a>
+      </li>
+
+      <!-- View My Notes -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'view_mynotes' %}"><b>VIEW MY NOTES</b></a>
+      </li>
+
+      <!-- View All Notes -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'view_allnotes' %}"><b>VIEW ALL NOTES</b></a>
+      </li>
+
+      <!-- Logout -->
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}"><b>LOGOUT</b></a>
+      </li>
+
+      <!-- User Dropdown -->
+      <li class="nav-item dropdown">
+        <button class="btn btn-warning dropdown-toggle ml-2" type="button" id="userDropdown" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Welcome {{ request.user.first_name }}
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="{% url 'profile' %}">PROFILE</a>
+          <a class="dropdown-item" href="{% url 'editprofile' %}">EDIT PROFILE</a>
+          <a class="dropdown-item" href="{% url 'changepassword' %}">CHANGE PASSWORD</a>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+
+{% block body %}
+{% endblock %}
+
+<br><br><br><br>
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted mt-5">
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background: linear-gradient(to right,  #ffffff, #0077ff);">
+    © {{ now|date:"Y" }} RK Notes Sharing Site Site developed by <b>Ramakant Chaudhari</b>. All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+{% extends 'navigation.html' %}
+{% load static %}
+{% block body %}
+
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        background: url("{% static 'images/bg.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .transparent-container {
+        background: rgba(0, 0, 0, 0.27);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    }
+      /* Make all text inside these containers white */
+    .white-text {
+        color: white;
+    }
+
+    /* White placeholder text in input fields */
+    input::placeholder {
+        color: white;
+        opacity: 1; /* make sure it's fully visible */
+    }
+
+    /* Optional: white label text */
+    label {
+        color: white;
+    }
+      .yellow-text {
+  color: yellow;
+}
+.gradient-btn {
+    background: linear-gradient(90deg, #00c6ff, #0072ff); /* Blue gradient */
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.gradient-btn:hover {
+    background: linear-gradient(90deg, #0072ff, #00c6ff); /* Reverse gradient on hover */
+}
+
+.gradiente-btn {
+    background: linear-gradient(90deg, #ff0000ff, #b32a2aff); /* Same blue gradient */
+    color: white !important;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none; /* Remove underline */
+    display: inline-block;
+    transition: background 0.3s ease;
+}
+
+.gradiente-btn:hover {
+    background: linear-gradient(90deg, #b32a2aff, #ff0000ff);
+    color: white !important;
+    text-decoration: none;
+}
+
+</style>
+
+{% if error == "no" %}
+<script>
+    alert('Logged In Successfully');
+    window.location="{% url 'profile' %}";
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Invalid Login Credentials, Try Again');
+</script>
+{% endif %}
+
+<div class="container mt-5 transparent-container">
+    <div class="row">
+       <div class="row">
+    <div class="col-sm-6 white-text">
+        <h2 class="text-center yellow-text"><b>NEW USER</b></h2>
+        <hr>
+        <p>By Creating an account with our website you will be able to move through the notes uploading
+            and downloading process and more...</p>
+<a href="{% url 'signup' %}" class="gradiente-btn text-white mt-5">Create an Account</a>
+    </div>
+    <div class="col-sm-6 white-text">
+    <h2 class="text-center yellow-text"><b>USER LOGIN</b></h2>
+    <hr>
+    <form method="post">
+        {% csrf_token %}
+        <label>Email Address</label>
+        <input type="email" class="form-control" placeholder="Enter Email ID" name="emailid" autocomplete="off">
+        <label>Password</label>
+        <input type="password" class="form-control" placeholder="Enter Password" name="pass" autocomplete="off">
+        <center>
+    <input type="submit" class="mt-4 gradient-btn" value="LOGIN">
+</center>
+
+    </form>
+</div>
+</div>
+
+    </div>
+</div>
+<br><br><br><br><br><br>
+{% endblock %}
